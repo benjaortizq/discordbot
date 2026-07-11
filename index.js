@@ -1,7 +1,7 @@
 require('dotenv').config();
-const { Client, GatewayIntentBits, Partials } = require('discord.js');
+const { Client, GatewayIntentBits, Partials, EmbedBuilder } = require('discord.js');
 
-const PREFIX = '!';
+const PREFIX = '!'; // prefijo del bot por deafault 
 
 const client = new Client({
   intents: [
@@ -12,9 +12,14 @@ const client = new Client({
   partials: [Partials.Channel],
 });
 
+
+//esto es solo para dar a entender que se creo un bot asi como asi xd . 
 client.once('ready', () => {
   console.log(`Bot conectado como ${client.user.tag}`);
 });
+
+// si se crea un mensaje con 
+
 
 client.on('messageCreate', (message) => {
   if (message.author.bot) return;
@@ -29,5 +34,45 @@ client.on('messageCreate', (message) => {
     message.channel.send('Boop.');
   }
 });
+
+client.on ("messageDelete", (message) => {
+    try {
+        if (message.author.bot) return;
+        
+        const authorData = {
+            id: message.author.id,
+            nombre: message.author.tag,
+            avatar: message.author.displayAvatarURL(),
+            color: message.member.displayHexColor,
+};
+
+
+
+
+
+        const embed = new EmbedBuilder()
+            .setColor(authorData.color)
+            .setAuthor({
+                name: authorData.nombre + ' (' + "ID :" + authorData.id + ')',
+                iconURL: authorData.avatar,
+            })
+            .setTitle('Ha eliminado un mensaje :')
+            .setDescription(message.content) 
+            .setFooter({ text: message.guild.name , iconURL: message.guild.iconURL() })
+            ;
+
+        message.channel.send({ embeds: [embed] });
+
+
+
+
+            
+    } catch (error) {
+            console.error(':', error);
+            message.channel.send ('Ocurrió un error al intentar enviar el mensaje eliminado.' + error.message);
+
+    }
+});
+
 
 client.login(process.env.DISCORD_TOKEN);
