@@ -28,15 +28,22 @@ client.user.setPresence({
 
 client.on('messageCreate', (message) => {
     if (message.author.bot) return;
-    if (!message.content.startsWith(PREFIX)) return;
+    if (!message.content.startsWith(PREFIX))  { 
+
+    };
 
     const args = message.content.slice(PREFIX.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
 
     if (command === 'ping') {
         message.channel.send('Pong.');
-    } else if (command === 'beep') {
+    } 
+    else if (command === 'beep') {
         message.channel.send('Boop.');
+    }
+
+    else if (command === 'snipe') {  // comando para ver el ultimo mensaje eliminado
+
     }
 });
 
