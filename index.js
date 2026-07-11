@@ -69,7 +69,7 @@ client.on ("messageDelete", (message) => {
             
     } catch (error) {
             console.error(':', error);
-            message.channel.send ('Ocurrió un error al intentar enviar el mensaje eliminado.' + error.message);
+            message.channel.send ('Error :' + error.message);
 
     }
 });
