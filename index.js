@@ -35,6 +35,8 @@ client.on('messageCreate', (message) => {
   }
 });
 
+
+//si se elimina un mensaje :
 client.on ("messageDelete", (message) => {
     try {
         if (message.author.bot) return;
