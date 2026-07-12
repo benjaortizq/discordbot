@@ -19,6 +19,7 @@ module.exports = {
         name: `${guardado.autor.nombre} (ID: ${guardado.autor.id})`,
         iconURL: guardado.autor.avatar,
       })
+      .setTitle('Último mensaje eliminado:')
       .setDescription(guardado.contenido || '(No Content)')
       .addFields({ name: 'Eliminado', value: `<t:${timestampEnSegundos}:R>` })
       .setFooter({ text: message.guild.name, iconURL: message.guild.iconURL() });
