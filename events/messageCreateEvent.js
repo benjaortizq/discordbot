@@ -11,11 +11,13 @@ module.exports = {
 
 
     if (!message.content.startsWith(PREFIX))  { 
+      const text = message.content.toLowerCase(); 
+        if (text.includes ("me gusta")) { 
+          message.channel.send ('A mi tambien!');
+    }
     };
 
-    if (message.content.includes ("me gusta")) { 
-      message.channel.send ('A mi tambien!');
-    }
+
     const args = message.content.slice(PREFIX.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
 

@@ -1,6 +1,6 @@
 
 const { FLAGS, tieneFlag, activarFlag, desactivarFlag } = require('../utils/flags.js');
-
+const { getFlags, setFlags } = require('../utils/store.js');
 
 const autosnipe = require('../features/autoSnipe.js');
 const { guardarMensajeEliminado } = require('../utils/store.js');
@@ -18,7 +18,7 @@ module.exports = {
     };
       //se ejecuta autosnipe para enviar el embed del mensaje eliminado
       const flagsActuales = getFlags(message.guild.id);
-      
+
       if ( tieneFlag(flagsActuales, FLAGS.AUTOSNIPE) ) {
         autosnipe.execute(message, authorData);
       }
