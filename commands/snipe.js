@@ -7,7 +7,7 @@ module.exports = {
     const guardado = getMensajeEliminado(message.guild.id, message.channel.id);
 
     if (!guardado) {
-      message.reply('No hay nada que snipear en este canal.');
+      message.reply('There is nothing to snipe.');
       return;
     }
 
@@ -19,7 +19,6 @@ module.exports = {
         name: `${guardado.autor.nombre} (ID: ${guardado.autor.id})`,
         iconURL: guardado.autor.avatar,
       })
-      .setTitle('Último mensaje eliminado:')
       .setDescription(guardado.contenido || '(No Content)')
       .addFields({ name: 'Eliminado', value: `<t:${timestampEnSegundos}:R>` })
       .setFooter({ text: message.guild.name, iconURL: message.guild.iconURL() });
