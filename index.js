@@ -1,9 +1,6 @@
 require('dotenv').config();
 const { Client, GatewayIntentBits, Partials, EmbedBuilder,ActivityType } = require('discord.js');
 
-const PREFIX = '!'; // prefijo del bot por deafault 
-const ping = require('./commands/ping.js'); // ← ACÁ arriba, junto a los demás imports
-const deletedMessage = require('./events/deletedMessage.js'); // ← ACÁ arriba, junto a los demás importss
 
 const client = new Client({
 intents: [
@@ -29,33 +26,13 @@ client.user.setPresence({
 
 
 client.on('messageCreate', (message) => {
-    if (message.author.bot) return;
-    if (!message.content.startsWith(PREFIX))  { 
-
-    };
-
-    const args = message.content.slice(PREFIX.length).trim().split(/ +/);
-    const command = args.shift().toLowerCase();
-
-    if (command === 'ping') {
-        ping.execute(message, args);
-    }
-
 
 
 });
 
 
 //si se elimina un mensaje :
-client.on ("messageDelete", (message) => {
-    try {
-        deletedMessage.execute(message);
- 
-    } catch (error) {
-            console.error(':', error);
 
-    }
-});
 
 
 client.login(process.env.DISCORD_TOKEN);
