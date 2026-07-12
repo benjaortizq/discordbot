@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require('discord.js');
-const mensajesEliminados = require('.../utils/store.js');
+const mensajesEliminados = require('../utils/store.js');
 
 module.exports = {  
     execute: (message, args) => {

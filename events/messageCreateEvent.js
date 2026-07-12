@@ -1,19 +1,28 @@
+
+const { PREFIX } = require('../config.js');
+
+
 module.exports = {
-  execute: (message) => {
+
+  
+  execute: (message, comandos) => {
 
     if (message.author.bot) return;
 
 
-    if (!message.content.startsWith(PREFIX))  {  // COSAS QUE DEBERIAN IR SI ES QUE SE TIENE UN PREFIJO.
-    //SI LA VARIABLE SENDPREXIVMESSAGES ESTA ACTIVA ENTONCES SE CORER EL AMAJER DE EVENTS . 
-
+    if (!message.content.startsWith(PREFIX))  { 
     };
-    const args = message.content.slice(PREFIX.length).trim().split(/ +/);
-    const command = args.shift().toLowerCase();
 
-    if (command === 'ping') {
-        ping.execute(message, args);
+    if (message.content.includes ("me gusta")) { 
+      message.channel.send ('Me gusta a mi tambien!');
     }
+    const args = message.content.slice(PREFIX.length).trim().split(/ +/);
+    const commandName = args.shift().toLowerCase();
+
+    const comando = comandos.get(commandName);
+    if (!comando) return; // no existe ese comando, ignorar
+
+    comando.execute(message, args);
 
 
   },

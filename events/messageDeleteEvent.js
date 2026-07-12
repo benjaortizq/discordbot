@@ -1,4 +1,4 @@
-const autosnipe = require('/features/autosnipe.js'); // o donde tengas tu lógica de embed
+const autosnipe = require('../features/autoSnipe.js'); // o donde tengas tu lógica de embed
 
 module.exports = {
   execute: (message) => {
