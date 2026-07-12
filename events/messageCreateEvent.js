@@ -14,7 +14,7 @@ module.exports = {
     };
 
     if (message.content.includes ("me gusta")) { 
-      message.channel.send ('Me gusta a mi tambien!');
+      message.channel.send ('A mi tambien!');
     }
     const args = message.content.slice(PREFIX.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
