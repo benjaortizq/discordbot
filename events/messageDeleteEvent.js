@@ -22,10 +22,14 @@ module.exports = {
       if ( tieneFlag(flagsActuales, FLAGS.AUTOSNIPE) ) {
         autosnipe.execute(message, authorData);
       }
+
+
+      const primerAdjunto = message.attachments.first(); // revisa los archivos del coso . 
       //se grea el archivo de mensjae eliminado por canal 
       guardarMensajeEliminado(message.guild.id, message.channel.id, {
         contenido: message.content || '(sin contenido de texto)',
         autor: authorData,
+        imagenUrl: primerAdjunto ? primerAdjunto.url : null,
         fecha: message.createdTimestamp,
         });
         

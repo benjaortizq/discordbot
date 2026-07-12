@@ -1,5 +1,5 @@
 const FLAGS = {
-  WELCOME: 1 << 0,   
+  PCOMMANDS: 1 << 0,   // PERMITE USAR COMANDOS DEL BOT (PREFIX)
   LOGS:   1 << 1,
   MOD:      1 << 2,
   AUTOSNIPE: 1 << 3, 
