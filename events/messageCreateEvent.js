@@ -20,7 +20,7 @@ module.exports = {
     const commandName = args.shift().toLowerCase();
 
     const comando = comandos.get(commandName);
-    if (!comando) return; // no existe ese comando, ignorar
+    if (!comando) return; 
 
     comando.execute(message, args);
 

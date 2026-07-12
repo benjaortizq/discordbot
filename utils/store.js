@@ -1,8 +1,11 @@
 // utils/store.js
 const fs = require('fs');
 const path = require('path');
+const { FLAGS, tieneFlag, activarFlag, desactivarFlag } = require('./flags.js');
 
 const CARPETA_DATA = path.join(__dirname, '..', 'data');
+
+
 
 // carpeta existe 
 if (!fs.existsSync(CARPETA_DATA)) {
@@ -15,7 +18,7 @@ function getPathServidor(guildId) {
 
 function leerDatosServidor(guildId) {
   const filePath = getPathServidor(guildId);
-  if (!fs.existsSync(filePath)) return {}; // si no existe, objeto vacío
+  if (!fs.existsSync(filePath)) return {}; // si no existe, objeto vacio
   const contenido = fs.readFileSync(filePath, 'utf-8');
   return JSON.parse(contenido);
 }
@@ -41,7 +44,24 @@ function getMensajeEliminado(guildId, channelId) {
 
 
 
+//*FLAGS ----------------------------------------------------------------
+
+
+function getFlags(guildId) {
+  const datos = leerDatosServidor(guildId);
+  return datos.flags ?? 0;
+}
+
+function setFlags(guildId, flags) {
+  const datos = leerDatosServidor(guildId);
+  datos.flags = flags;
+  guardarDatosServidor(guildId, datos);
+}
+
+
 module.exports = {
   guardarMensajeEliminado,
   getMensajeEliminado,
+  getFlags,
+  setFlags ,
 };
