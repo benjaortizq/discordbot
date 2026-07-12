@@ -26,6 +26,7 @@ client.user.setPresence({
 
 
 client.on('messageCreate', (message) => {
+    messageCreateEvent.execute(message);
 
 
 });
