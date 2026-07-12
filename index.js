@@ -3,7 +3,7 @@ const { Client, GatewayIntentBits, Partials, EmbedBuilder,ActivityType } = requi
 
 const PREFIX = '!'; // prefijo del bot por deafault 
 const ping = require('./commands/ping.js'); // ← ACÁ arriba, junto a los demás imports
-const snipe = require('./events/deletedMessage.js'); // ← ACÁ arriba, junto a los demás importss
+const deletedMessage = require('./events/deletedMessage.js'); // ← ACÁ arriba, junto a los demás importss
 
 const client = new Client({
 intents: [
@@ -20,7 +20,7 @@ client.once('ready', () => {
 console.log(`Bot conectado como ${client.user.tag}`);
 
 client.user.setPresence({
-    activities: [{ name: 'Type !help ', type: ActivityType.Listening }],
+    activities: [{ name: 'Que rico que esta raizer', type: ActivityType.Listening }],
     status: 'online',
     });
 });
@@ -49,7 +49,7 @@ client.on('messageCreate', (message) => {
 //si se elimina un mensaje :
 client.on ("messageDelete", (message) => {
     try {
-        snipe.execute(message);
+        deletedMessage.execute(message);
  
     } catch (error) {
             console.error(':', error);

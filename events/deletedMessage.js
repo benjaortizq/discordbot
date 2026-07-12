@@ -1,4 +1,5 @@
 const { EmbedBuilder } = require('discord.js');
+const mensajesEliminados = require('../utils/store.js');
 
 module.exports = {  
     execute: (message, args) => {
@@ -22,6 +23,7 @@ module.exports = {
             .setTitle('Ha eliminado un mensaje :')
             .setDescription(message.content|| '(No Content)') 
             .setFooter({ text: message.guild.name , iconURL: message.guild.iconURL() })
+            .setTimestamp(message.createdAt)
             ;
 
         message.channel.send({ embeds: [embed] });
