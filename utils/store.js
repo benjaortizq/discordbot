@@ -38,17 +38,7 @@ function getMensajeEliminado(guildId, channelId) {
   return datos.mensajesEliminados?.[channelId] ?? null;
 }
 
-function tieneFlag(configActual, flag) {
-  return (configActual & flag) === flag; // AND b2b
-}
 
-function activarFlag(configActual, flag) {
-  return configActual | flag; // OR b2b
-}
-
-function desactivarFlag(configActual, flag) {
-  return configActual & ~flag; // i & !i 
-}
 
 
 module.exports = {

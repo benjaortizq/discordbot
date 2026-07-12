@@ -7,6 +7,7 @@ const comandos = cargarComandos(); // se carga una sola vez al arrancar
 
 const messageCreate = require('./events/messageCreateEvent.js');
 const messageDelete = require('./events/messageDeleteEvent.js');
+const messageUpdate = require('./events/messageUpdateEvent.js');
 
 
 const { PREFIX } = require('./config.js');
@@ -46,6 +47,10 @@ client.on('messageDelete', (message) => {
     messageDelete.execute(message);
 });
 
+
+client.on ('messageUpdate', (oldMessage, newMessage) => {
+    messageUpdate.execute(oldMessage, newMessage);
+}) 
 
 
 client.login(process.env.DISCORD_TOKEN);
