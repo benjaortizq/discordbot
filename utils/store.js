@@ -42,6 +42,31 @@ function getMensajeEliminado(guildId, channelId) {
 }
 
 
+//*IDS AUTOEDITSNIPE ----------------------------------------------------------------
+
+
+function getIdsPermitidos(guildId) {
+  const datos = leerDatosServidor(guildId);
+  return datos.idsPermitidosEditSnipe ?? [];
+}
+
+function agregarIdPermitido(guildId, userId) {
+  const datos = leerDatosServidor(guildId);
+  if (!datos.idsPermitidosEditSnipe) datos.idsPermitidosEditSnipe = [];
+  if (!datos.idsPermitidosEditSnipe.includes(userId)) {
+    datos.idsPermitidosEditSnipe.push(userId);
+  }
+  guardarDatosServidor(guildId, datos);
+}
+
+function quitarIdPermitido(guildId, userId) {
+  const datos = leerDatosServidor(guildId);
+  if (!datos.idsPermitidosEditSnipe) return;
+  datos.idsPermitidosEditSnipe = datos.idsPermitidosEditSnipe.filter(id => id !== userId);
+  guardarDatosServidor(guildId, datos);
+}
+
+
 
 
 //*FLAGS ----------------------------------------------------------------
@@ -59,9 +84,17 @@ function setFlags(guildId, flags) {
 }
 
 
+
 module.exports = {
   guardarMensajeEliminado,
   getMensajeEliminado,
+
+  getIdsPermitidos,
+  agregarIdPermitido,
+  quitarIdPermitido,
+
+
   getFlags,
   setFlags ,
+  
 };
