@@ -11,7 +11,8 @@ module.exports = {
                 iconURL: authorData.avatar,
             })
             .setTitle('Ha eliminado un mensaje :')
-            .setDescription(message.content|| '(No Content)') 
+            .setDescription(message.content|| '_ _') 
+            .setImage(message.attachments.first() ? message.attachments.first().url : null)
             .setFooter({ text: message.guild.name , iconURL: message.guild.iconURL() })
             .setTimestamp(message.createdAt)
             ;

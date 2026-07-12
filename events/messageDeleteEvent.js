@@ -27,7 +27,7 @@ module.exports = {
       const primerAdjunto = message.attachments.first(); // revisa los archivos del coso . 
       //se grea el archivo de mensjae eliminado por canal 
       guardarMensajeEliminado(message.guild.id, message.channel.id, {
-        contenido: message.content || '(sin contenido de texto)',
+        contenido: message.content,
         autor: authorData,
         imagenUrl: primerAdjunto ? primerAdjunto.url : null,
         fecha: message.createdTimestamp,
