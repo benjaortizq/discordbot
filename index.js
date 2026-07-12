@@ -2,6 +2,8 @@ require('dotenv').config();
 const { Client, GatewayIntentBits, Partials, EmbedBuilder,ActivityType } = require('discord.js');
 
 const PREFIX = '!'; // prefijo del bot por deafault 
+const ping = require('./commands/ping.js'); // ← ACÁ arriba, junto a los demás imports
+const snipe = require('./commands/snipe.js'); // ← ACÁ arriba, junto a los demás imports
 
 const client = new Client({
 intents: [
@@ -36,51 +38,19 @@ client.on('messageCreate', (message) => {
     const command = args.shift().toLowerCase();
 
     if (command === 'ping') {
-        message.channel.send('Pong.');
-    } 
-    else if (command === 'beep') {
-        message.channel.send('Boop.');
+        ping.execute(message, args);
     }
 
-    else if (command === 'snipe') {  // comando para ver el ultimo mensaje eliminado
 
-    }
+
 });
 
 
 //si se elimina un mensaje :
 client.on ("messageDelete", (message) => {
     try {
-        if (message.author.bot) return;
-        
-        const authorData = {
-            id: message.author.id,
-            nombre: message.author.tag,
-            avatar: message.author.displayAvatarURL(),
-            color: message.member.displayHexColor,
-};
-
-
-
-
-
-        const embed = new EmbedBuilder()
-            .setColor(authorData.color)
-            .setAuthor({
-                name: authorData.nombre + ' (' + "ID :" + authorData.id + ')',
-                iconURL: authorData.avatar,
-            })
-            .setTitle('Ha eliminado un mensaje :')
-            .setDescription(message.content) 
-            .setFooter({ text: message.guild.name , iconURL: message.guild.iconURL() })
-            ;
-
-        message.channel.send({ embeds: [embed] });
-
-
-
-
-            
+        snipe.execute(message);
+ 
     } catch (error) {
             console.error(':', error);
 
