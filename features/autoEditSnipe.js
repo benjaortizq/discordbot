@@ -1,11 +1,14 @@
 const { EmbedBuilder } = require('discord.js');
+function limpiarId(texto) {
+  return texto.replace(/[<@!>]/g, ''); // quita <, @, !, > — deja solo los números
+}
 
 module.exports = {
   execute: (oldMessage, newMessage, authorData) => {
     const embed = new EmbedBuilder()
       .setColor(authorData.color)
       .setAuthor({
-        name: `${authorData.nombre} (ID: ${authorData.id})`,
+        name: `${authorData.nombre} (ID: ${limpiarId(authorData.id)})`,
         iconURL: authorData.avatar,
       })
       .setTitle('Ha editado un mensaje:')
@@ -17,6 +20,6 @@ module.exports = {
       .setTimestamp();
 
     newMessage.channel.send({ embeds: [embed] })
-      .catch((error) => console.error('Error al enviar editsnipe:', error));
+      .catch((error) => console.error('Error @autoEditSnipe:', error));
   },
 };

@@ -15,8 +15,7 @@ module.exports = {
             if (!tieneFlag(flagsActuales, FLAGS.AUTOEDITSNIPE)) return; //not active 
 
             const idsPermitidos = getIdsPermitidos(oldMessage.guild.id);
-            if (!idsPermitidos.includes(oldMessage.author.id)) return; // nnot allowed list 
-
+            if (idsPermitidos.includes(oldMessage.author.id)) { 
             const authorData = {
                 id: oldMessage.author.id,
                 nombre: oldMessage.author.tag,
@@ -25,8 +24,12 @@ module.exports = {
             };
 
             editsnipe.execute(oldMessage, newMessage, authorData);
+
+            } // allowed list 
+
+
         } catch (error) {
-            console.error('Error en messageUpdateEvent:', error);
+            console.error('Error @messageUpdateEvent.js:', error);
     }
   },
 
