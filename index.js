@@ -3,7 +3,7 @@ const { Client, GatewayIntentBits, Partials, EmbedBuilder,ActivityType } = requi
 
 const PREFIX = '!'; // prefijo del bot por deafault 
 const ping = require('./commands/ping.js'); // ← ACÁ arriba, junto a los demás imports
-const snipe = require('./commands/snipe.js'); // ← ACÁ arriba, junto a los demás imports
+const snipe = require('./events/snipe.js'); // ← ACÁ arriba, junto a los demás imports
 
 const client = new Client({
 intents: [

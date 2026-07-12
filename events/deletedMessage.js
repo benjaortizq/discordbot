@@ -20,7 +20,7 @@ module.exports = {
                 iconURL: authorData.avatar,
             })
             .setTitle('Ha eliminado un mensaje :')
-            .setDescription(message.content) 
+            .setDescription(message.content|| '(No Content)') 
             .setFooter({ text: message.guild.name , iconURL: message.guild.iconURL() })
             ;
 
