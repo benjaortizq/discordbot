@@ -3,7 +3,7 @@ const FLAGS = {
   LOGS:   1 << 1,
   MOD:      1 << 2,
   AUTOSNIPE: 1 << 3, 
-  TRACKEDIT: 1 << 4 //NO SE COMO LLAMARLO . flag que si alguien edita un mensaje , se manda el mensaje original a donde se EDITO 
+  AUTOEDITSNIPE: 1 << 4 //NO SE COMO LLAMARLO . flag que si alguien edita un mensaje , se manda el mensaje original a donde se EDITO 
 
 };
 

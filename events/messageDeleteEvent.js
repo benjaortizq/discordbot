@@ -1,5 +1,10 @@
+
+const { FLAGS, tieneFlag, activarFlag, desactivarFlag } = require('../utils/flags.js');
+
+
 const autosnipe = require('../features/autoSnipe.js');
 const { guardarMensajeEliminado } = require('../utils/store.js');
+
 module.exports = {
   execute: (message) => {
     try { 
@@ -12,8 +17,11 @@ module.exports = {
         color: message.member.displayHexColor,
     };
       //se ejecuta autosnipe para enviar el embed del mensaje eliminado
-      autosnipe.execute(message, authorData);
-
+      const flagsActuales = getFlags(message.guild.id);
+      
+      if ( tieneFlag(flagsActuales, FLAGS.AUTOSNIPE) ) {
+        autosnipe.execute(message, authorData);
+      }
       //se grea el archivo de mensjae eliminado por canal 
       guardarMensajeEliminado(message.guild.id, message.channel.id, {
         contenido: message.content || '(sin contenido de texto)',
