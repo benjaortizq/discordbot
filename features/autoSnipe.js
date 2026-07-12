@@ -2,18 +2,8 @@ const { EmbedBuilder } = require('discord.js');
 const mensajesEliminados = require('../utils/store.js');
 
 module.exports = {  
-    execute: (message, args) => {
-        if (message.author.bot) return;
+    execute: (message, authorData) => {
         
-        const authorData = {
-            id: message.author.id,
-            nombre: message.author.tag,
-            avatar: message.author.displayAvatarURL(),
-            color: message.member.displayHexColor,
-};
-
-
-
         const embed = new EmbedBuilder()
             .setColor(authorData.color)
             .setAuthor({

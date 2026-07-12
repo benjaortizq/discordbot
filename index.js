@@ -42,6 +42,10 @@ client.on('messageCreate', (message) => {
     messageCreate.execute(message, comandos);
 });
 
+client.on('messageDelete', (message) => {
+    messageDelete.execute(message);
+});
+
 
 
 client.login(process.env.DISCORD_TOKEN);
