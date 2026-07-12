@@ -1,5 +1,5 @@
-const autosnipe = require('../features/autoSnipe.js'); // o donde tengas tu lógica de embed
-const mensajesEliminados = require('../utils/store.js'); // o donde tengas tu lógica de almacenamiento
+const autosnipe = require('../features/autoSnipe.js');
+const { guardarMensajeEliminado } = require('../utils/store.js');
 module.exports = {
   execute: (message) => {
     try { 
@@ -15,7 +15,7 @@ module.exports = {
       autosnipe.execute(message, authorData);
 
       //se grea el archivo de mensjae eliminado por canal 
-      mensajesEliminados.set(message.channel.id, {
+      guardarMensajeEliminado(message.guild.id, message.channel.id, {
         contenido: message.content || '(sin contenido de texto)',
         autor: authorData,
         fecha: message.createdTimestamp,
