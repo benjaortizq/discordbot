@@ -9,7 +9,7 @@ module.exports = {
         id: message.author.id,
         nombre: message.author.tag,
         avatar: message.author.displayAvatarURL(),
-        color: message.member?.displayHexColor ?? '#000000',
+        color: message.member.displayHexColor,
     };
       //se ejecuta autosnipe para enviar el embed del mensaje eliminado
       autosnipe.execute(message, authorData);
