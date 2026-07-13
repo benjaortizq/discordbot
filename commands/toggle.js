@@ -4,10 +4,25 @@ const { FLAGS, tieneFlag, activarFlag, desactivarFlag } = require('../utils/flag
 module.exports = {
   name: 'toggle',
   execute: (message, args) => {
-    const nombreFlag = args[0]?.toUpperCase(); // ej: "autosnipe" -> "AUTOSNIPE"
+    const nombreFlag = args[0]?.toUpperCase();
 
     if (!nombreFlag) {
-      message.reply(`Use: \`!toggle <flag>\`. Banderas disponibles: ${Object.keys(FLAGS).join(', ')}`);
+      message.reply(`Use: \`!toggle <flag>\` o \`!toggle list\`. Banderas disponibles: ${Object.keys(FLAGS).join(', ')}`);
+      return;
+    }
+
+    // Caso especial: mostrar las flags activas
+    if (nombreFlag === 'LIST') {
+      const flagsActuales = getFlags(message.guild.id);
+
+      const listaEstado = Object.keys(FLAGS)
+        .map(nombre => {
+          const activa = tieneFlag(flagsActuales, FLAGS[nombre]);
+          return `${activa ? '✅' : '❌'} ${nombre}`;
+        })
+        .join('\n');
+
+      message.reply(`**Estado de las banderas:**\n${listaEstado}`);
       return;
     }
 
@@ -26,6 +41,6 @@ module.exports = {
 
     setFlags(message.guild.id, nuevoValor);
 
-    message.reply(` **${nombreFlag}** ahora está **${yaActivo ? 'DESACTIVADO' : 'ACTIVADO'}**.`);
+    message.reply(`**${nombreFlag}** ahora está **${yaActivo ? 'DESACTIVADO' : 'ACTIVADO'}**.`);
   },
 };
