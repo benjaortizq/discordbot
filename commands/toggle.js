@@ -6,6 +6,11 @@ module.exports = {
   execute: (message, args) => {
     const nombreFlag = args[0]?.toUpperCase();
 
+    if (!message.member.permissions.has('Administrator')) {
+      message.reply('No tenés permiso para usar este comando. Necesitás los sigueintes permisos :  `ADMINISTRATOR`.');
+      return;
+    }
+
     if (!nombreFlag) {
       message.reply(`Use: \`!toggle <flag>\` o \`!toggle list\`. Banderas disponibles: ${Object.keys(FLAGS).join(', ')}`);
       return;
