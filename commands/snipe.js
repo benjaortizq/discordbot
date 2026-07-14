@@ -1,9 +1,19 @@
 const { EmbedBuilder } = require('discord.js');
 const { getMensajeEliminado } = require('../utils/store.js');
 
+const { FLAGS, tieneFlag, activarFlag, desactivarFlag } = require('../utils/flags.js');
+
 module.exports = {
   name: 'snipe',
   execute: (message, args) => {
+
+    const flagsActuales = getFlags(message.guild.id);
+
+    if (tieneFlag(flagsActuales, FLAGS.SNIPE)) {
+      return;
+    }
+
+    
     const guardado = getMensajeEliminado(message.guild.id, message.channel.id);
 
     if (!guardado) {

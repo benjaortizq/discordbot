@@ -1,8 +1,13 @@
 const { EmbedBuilder } = require('discord.js');
 const mensajesEliminados = require('../utils/store.js');
 
+const { FLAGS, tieneFlag, activarFlag, desactivarFlag } = require('../utils/flags.js');
+
 module.exports = {  
     execute: (message, authorData) => {
+
+        const flagsActuales = getFlags(message.guild.id);
+        if (!tieneFlag(flagsActuales, FLAGS.AUTOEDITSNIPE)) return; //not active
         
         const embed = new EmbedBuilder()
             .setColor(authorData.color)

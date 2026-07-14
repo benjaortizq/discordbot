@@ -1,7 +1,9 @@
 const { getFlags, setFlags } = require('../utils/store.js');
 const { FLAGS, tieneFlag, activarFlag, desactivarFlag } = require('../utils/flags.js');
 
-module.exports = {
+
+//si esta activa , esta desactivada 
+module.exports = {  
   name: 'toggle',
   execute: (message, args) => {
     const nombreFlag = args[0]?.toUpperCase();
@@ -23,7 +25,7 @@ module.exports = {
       const listaEstado = Object.keys(FLAGS)
         .map(nombre => {
           const activa = tieneFlag(flagsActuales, FLAGS[nombre]);
-          return `${activa ? '✅' : '❌'} ${nombre}`;
+          return `${activa ? '❌' : '✅'} ${nombre}`;
         })
         .join('\n');
 
@@ -46,6 +48,6 @@ module.exports = {
 
     setFlags(message.guild.id, nuevoValor);
 
-    message.reply(`**${nombreFlag}** ahora está **${yaActivo ? 'DESACTIVADO' : 'ACTIVADO'}**.`);
+    message.reply(`**${nombreFlag}** ahora está **${yaActivo ? 'ACTIVADO' : 'DESACTIVADO'}**.`);
   },
 };

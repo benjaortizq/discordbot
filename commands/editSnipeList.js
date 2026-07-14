@@ -9,6 +9,11 @@ function limpiarId(texto) {
 module.exports = {
   name: 'editsnipelist',
   execute: (message, args) => {
+    if (!message.member.permissions.has('ManageGuild')) {
+      message.reply('No tenés permiso para usar este comando. Necesitás los sigueintes permisos :  `MANAGEGUILD`.');
+      return;
+    }
+
     const accion = args[0]; // 'add', 'remove', 'list'
     const UsuarioMention = args[1];
 
