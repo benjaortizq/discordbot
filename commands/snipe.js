@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require('discord.js');
-const { getMensajeEliminado } = require('../utils/store.js');
+const { getMensajeEliminado, getFlags } = require('../utils/store.js');
 
 const { FLAGS, tieneFlag, activarFlag, desactivarFlag } = require('../utils/flags.js');
 
